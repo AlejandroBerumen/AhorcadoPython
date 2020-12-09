@@ -188,10 +188,17 @@ class JuegoAhorcado:
             if not existio:
                 z = z + " -"
         return z;
+    def aparicionLetra(self, palabra, letra):
+        retorno = False
+        for i in range(len(palabra)):
+            if palabra[i] == letra:
+                retorno = True
+        return retorno
     def inicioAhorcado(self, palabraSecreta):
         print("\n\n----- Bienvenido al juego del ahorcado -----")
         oportunidades = Oportunidades()
         pila = Pila()
+        validacion = Validacion()
         oportunidades.setOportunidades(10)
         print("\nEstoy pensando en una palabra... ¿Puedes adivinarla?")
         while not self.seAdivinoLaPalabra(palabraSecreta, pila):
@@ -200,6 +207,21 @@ class JuegoAhorcado:
             print(self.obtenerPalabraAdivinada(palabraSecreta, pila))
             print("Letras disponibles: "+self.letrasDisponibles(pila))
             nuevaLetra = input("Ingresa una letra:\n")
+            nuevaLetra = validacion.validarLetras(nuevaLetra)
+            pila.agregarLetra(nuevaLetra)
+            if self.aparicionLetra(palabraSecreta, nuevaLetra):
+                print("\nMuy bien!")
+            else:
+                print("\nOh oh... Parece que esa letra no esta en la palabra")
+                oportunidades.quitarOportunidad()
+            if(oportunidades.getOportunidades == 0):
+                print("\nSE ACABARON LAS OPORTUNIDADES, HAS PERDIDO!")
+                print("La palabra secreta era: "+palabraSecreta)
+                break
+            if self.seAdivinoLaPalabra(palabraSecreta, pila):
+                print("\nPalabra secreta: "+palabraSecreta)
+                print("FELICIDADES! HAS GANADO!")
+                
 class Pila:
     letras = []
     def getLetras(self):
@@ -225,3 +247,6 @@ class Pila:
                 letras2[j] = aux
                 j -= 1
         self.setLetras(letras2)
+
+#print("\n=================== Proyecto Final de Estructura de Datos - Lauro Alejandro Berumen Fernandez - 3er Semestre ===================")
+#print("\n\nBienvenido! ¿Que acci")
