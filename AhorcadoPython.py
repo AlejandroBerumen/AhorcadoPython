@@ -206,7 +206,7 @@ class JuegoAhorcado:
         pila = Pila()
         validacion = Validacion()
         oportunidades.setOportunidades(10)
-        print("\nEstoy pensando en una palabra... ¿Puedes adivinarla?")
+        print("\nEstoy pensando en una palabra... Puedes adivinarla?")
         while not self.seAdivinoLaPalabra(palabraSecreta, pila):
             print("\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n")
             print("Te quedan "+str(oportunidades.getOportunidades())+" oportunidades...")
@@ -260,7 +260,7 @@ juego = JuegoAhorcado()
 validacion = Validacion()
 archivo = Archivo()
 while elec != "5":
-    print("\n\nBienvenido! ¿Que deseas hacer?")
+    print("\n\nBienvenido! Que deseas hacer?")
     print("1.- Verificar archivo")
     print("2.- Llenar archivo con palabras")
     print("3.- Borrar archivo")
