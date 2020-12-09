@@ -132,11 +132,9 @@ class JuegoAhorcado:
         azar = random.randint(0, len(palabras)-1)
         return palabras[azar]
     def seAdivinoLaPalabra(self, palabra, pila):
-        print(palabra)
         letrasIngresadas = []
         letrasIngresadas = pila.getLetras()
         cont = 0
-        print(letrasIngresadas)
         retorno = False
         for i in range(len(palabra)):
             for j in range(len(letrasIngresadas)):
@@ -147,13 +145,24 @@ class JuegoAhorcado:
         if len(palabra) == cont:
             retorno = True
         return retorno
+    def letrasDisponibles(self, pila):
+        letrasIngresadas = []
+        letrasIngresadas = pila.getLetras()
+        retorno = "abcdefghijklmnopqrstuvwxyz";
+        for i in range(len(retorno)):
+            for j in range(len(letrasIngresadas)):
+                if letrasIngresadas[j] == None:
+                    break
+                if retorno.lower()[i] == letrasIngresadas[j].lower()[0]:
+                    retorno = retorno.replace(letrasIngresadas[j].lower(), "-")
+        return retorno;
     def inicioAhorcado(self, palabraSecreta):
         print("\n----- Bienvenido al juego del ahorcado -----")
-        pila = Pila()
-        print(self.seAdivinoLaPalabra(self.elegirPalabra(self.cargarPalabras()), pila))
+        #pila = Pila()
+        #self.seAdivinoLaPalabra(self.elegirPalabra(self.cargarPalabras()), pila)
 
 class Pila:
-    letras = ["a","b","c","d","e","h","i","j","k","l","m","n","o","p","r","z","y"]
+    letras = []
     def getLetras(self):
         return self.letras
     def extraer(self):
@@ -175,7 +184,4 @@ class Pila:
                 letras2[j] = aux
                 j -= 1
         self.setLetras(letras2)
-        
 
-aaa = JuegoAhorcado()
-aaa.inicioAhorcado(aaa.elegirPalabra(aaa.cargarPalabras()))
