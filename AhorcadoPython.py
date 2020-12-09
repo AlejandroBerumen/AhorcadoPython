@@ -25,8 +25,12 @@ class Validacion:
                     cadena = input("\nPor favor, ingrese solo una letra...\n")
         return cadena
     def validarEleccionMenu(self, elec):
-        if len(elec) > 1 or ord(elec[0]) < 49 or ord(elec[0]) > 53:
+        while len(elec) != 1:
             elec = input("\nEntrada no valida, intentelo de nuevo...\n")
+        while ord(elec[0]) < 49 or ord(elec[0]) > 53:
+            elec = input("\nEntrada no valida, intentelo de nuevo...\n")
+            while len(elec) != 1:
+                elec = input("\nEntrada no valida, intentelo de nuevo...\n")
         return elec
 class Ordenamiento:
     def quickSort(self, numeros, izq, der):
