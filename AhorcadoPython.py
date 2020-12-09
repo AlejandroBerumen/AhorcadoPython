@@ -24,7 +24,10 @@ class Validacion:
                 while len(cadena) > 1 or ord(cadena[0]) < 65 or ord(cadena[0]) > 91:
                     cadena = input("\nPor favor, ingrese solo una letra...\n")
         return cadena
-
+    def validarEleccionMenu(self, elec):
+        if len(elec) > 1 or ord(elec[0]) < 49 or ord(elec[0]) > 53:
+            elec = input("\nEntrada no valida, intentelo de nuevo...\n")
+        return elec
 class Ordenamiento:
     def quickSort(self, numeros, izq, der):
         pivote = numeros[0][izq]
@@ -248,5 +251,17 @@ class Pila:
                 j -= 1
         self.setLetras(letras2)
 
-#print("\n=================== Proyecto Final de Estructura de Datos - Lauro Alejandro Berumen Fernandez - 3er Semestre ===================")
-#print("\n\nBienvenido! ¿Que acci")
+print("\n=================== Proyecto Final de Estructura de Datos - Lauro Alejandro Berumen Fernandez - 3er Semestre ===================")
+elec = "0"
+juego = JuegoAhorcado()
+validacion = Validacion()
+while elec != "5":
+    print("\n\nBienvenido! ¿Que deseas hacer?")
+    print("1.- Verificar archivo")
+    print("2.- Llenar archivo con palabras")
+    print("3.- Borrar archivo")
+    print("4.- Jugar")
+    print("5.- Salir")
+    elec = input()
+    elec = validacion.validarEleccionMenu(elec)
+    
