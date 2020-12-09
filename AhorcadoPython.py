@@ -156,6 +156,21 @@ class JuegoAhorcado:
                 if retorno.lower()[i] == letrasIngresadas[j].lower()[0]:
                     retorno = retorno.replace(letrasIngresadas[j].lower(), "-")
         return retorno;
+    def obtenerPalabraAdivinada(self, palabra, pila):
+        letrasIngresadas = []
+        letrasIngresadas = pila.getLetras()
+        z = ""
+        for i in range(len(palabra)):
+            existio = False
+            for j in range(len(letrasIngresadas)):
+                if letrasIngresadas[j] == None:
+                    break
+                if palabra.lower()[i] == letrasIngresadas[j].lower()[0]:
+                    z = z + " " + letrasIngresadas[j].lower()
+                    existio = True
+            if not existio:
+                z = z + " -"
+        return z;
     def inicioAhorcado(self, palabraSecreta):
         print("\n----- Bienvenido al juego del ahorcado -----")
         #pila = Pila()
@@ -165,6 +180,8 @@ class Pila:
     letras = []
     def getLetras(self):
         return self.letras
+    def setLetras(self, letras):
+        self.letras=letras
     def extraer(self):
         if self.getLetras() == []:
             return " "
@@ -184,4 +201,3 @@ class Pila:
                 letras2[j] = aux
                 j -= 1
         self.setLetras(letras2)
-
