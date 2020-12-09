@@ -131,3 +131,27 @@ class JuegoAhorcado:
     def elegirPalabra(self, palabras):
         azar = random.randint(0, len(palabras)-1)
         return palabras[azar]
+
+class Pila:
+    letras = []
+    def getLetras(self):
+        return self.letras
+    def extraer(self):
+        if self.letras() == []:
+            return " "
+        else:
+            return self.letras.pop(0)
+    def agregarLetra(self, letra):
+        letras2=[]
+        letras2.append(letra)
+        while not self.letras == []:
+            letras2.append(self.letras.pop())
+        aux=0
+        for i in range(1,len(letras2)):
+            aux = letras2[i]
+            j = (i-1)
+            while j >= 0 and letras2[j] > aux:
+                letras2[j+1] = letras2[j]
+                letras2[j] = aux
+                j -= 1
+        self.setLetras(letras2)
