@@ -111,14 +111,17 @@ class Archivo:
         if not os.path.isfile("palabras.txt"):
             print("\nEl archivo no exise")
             self.crearArchivo()
+            return False
         else:
             with open("palabras.txt", "r+") as archivo:
                 cadena = archivo.read()
                 palabras = cadena.count(",")
             if palabras > 0:
                 print("\nArchivo leido exitosamente\nEl archivo contiene "+str(palabras)+" palabras.")
+                return True
             else:
                 print("\nArchivo leido exitosamente\nEl archivo no contiene palabras...")
+                return False
     def agregarPalabras(self):
         if not os.path.isfile("palabras.txt"):
             print("\nNo existe un archivo donde insertar las palabras.\nCreando archivo...")
@@ -255,6 +258,7 @@ print("\n=================== Proyecto Final de Estructura de Datos - Lauro Aleja
 elec = "0"
 juego = JuegoAhorcado()
 validacion = Validacion()
+archivo = Archivo()
 while elec != "5":
     print("\n\nBienvenido! ¿Que deseas hacer?")
     print("1.- Verificar archivo")
@@ -264,4 +268,12 @@ while elec != "5":
     print("5.- Salir")
     elec = input()
     elec = validacion.validarEleccionMenu(elec)
+    if(elec=="1"):
+        archivo.verificarArchivo()
+    if(elec=="2"):
+        archivo.agregarPalabras()
+    if(elec=="3"):
+        archivo.eliminarArchivo()
+    if(elec=="4"):
+        juego.inicioAhorcado(juego.elegirPalabra(juego.cargarPalabras()))
     
