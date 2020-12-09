@@ -1,1 +1,1 @@
-analizar,calcular,estudiar,hola,java,mundo,palabra,programar,python,razonar,
+ANALIZAR,CALCULAR,ESTUDIAR,HOLA,JAVA,MUNDO,PAJARO,PALABRA,PROGRAMAR,PYTHON,RAZONAR,

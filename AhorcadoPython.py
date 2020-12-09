@@ -59,9 +59,30 @@ class Ordenamiento:
         for i in range(cantidad):
             cadenafinal = cadenafinal + palabrasEnOrden[i] + ","
         with open("palabras.txt", "r+") as archivo:
-             archivo.write(cadenafinal)
+             archivo.write(cadenafinal.upper())
             
 class Archivo:
+    def validarPalabrasIngresadas(self, palabra):
+        palabra = palabra.upper()
+        while len(palabra) < 4 and palabra != "2":
+            palabra = input("\nLa palabra debe contener al menos 4 caracteres, ingrese una nueva:\n")
+        if palabra != "2":
+            bandera = True
+        else:
+            bandera = False
+        while(bandera):
+            for i in range(len(palabra)):
+                if i >= len(palabra):
+                    continue
+                if ord(palabra[i]) < 65 or ord(palabra[i]) > 91:
+                    palabra = input("\nLa palabra debe contener unicamente letras, ingrese una nueva:\n")
+                    while len(palabra) < 4 and palabra != "2":
+                        palabra = input("\nLa palabra debe contener al menos 4 caracteres, ingrese una nueva:\n")
+                    palabra = palabra.upper()
+                    i = 0
+            bandera = False
+        return palabra
+                 
     def crearArchivo(self):
         archivo = open("palabras.txt", "w")
         archivo.close()
@@ -82,7 +103,17 @@ class Archivo:
         if not os.path.isfile("palabras.txt"):
             print("\nNo existe un archivo donde insertar las palabras.\nCreando archivo...")
             self.crearArchivo()
-        print("")
+        print("\n--- Agregar palabras | Instrucciones ---\n\n1.- Escriba la palabra que desee y oprima enter para agregarla\n2.- Cada palabra debe contener un minimo de 4 letras\n3.- Cuando haya terminado de agregar palabras, ingrese un \'2\'")
+        palabra = ""
+        while palabra!="2":
+            palabra = input()
+            palabra = self.validarPalabrasIngresadas(palabra)
+            if(palabra=="2"):
+                break
+            orden = Ordenamiento()
+            orden.ordenAlfabetico(palabra)
+        print("Las palabras se han agregado con exito")
+            
     def eliminarArchivo(self):
         if os.path.isfile("palabras.txt"):
             os.remove("palabras.txt")
@@ -90,6 +121,5 @@ class Archivo:
         else:
             print("\nNo se ha encontrado un archivo para eliminar")
             
-
-asd = Ordenamiento()
-asd.ordenAlfabetico("palabra")
+arc = Archivo()
+arc.agregarPalabras()
