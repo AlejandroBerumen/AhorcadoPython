@@ -11,18 +11,25 @@ class Oportunidades:
         self.oportunidades = self.oportunidades - 1
 
 class Validacion:
-    def validarLetras(self, cadena):
-        pila = Pila()
+    def validarLetras(self, cadena, pila):
         letrasIngresadas = pila.getLetras()
         cadena = cadena.upper()
-        while len(cadena) > 1 or ord(cadena[0]) < 65 or ord(cadena[0]) > 91:
+        while len(cadena) != 1:
             cadena = input("\nPor favor, ingrese solo una letra...\n")
+        while ord(cadena[0].upper()) < 65 or ord(cadena[0].upper()) > 91:
+            cadena = input("\nPor favor, ingrese solo una letra...\n")
+            while len(cadena) != 1:
+                cadena = input("\nPor favor, ingrese solo una letra...\n")
         for i in range(len(letrasIngresadas)):
-            if letrasIngresadas[i].upper() == cadena:
+            if letrasIngresadas[i].upper() == cadena.upper():
                 cadena = input("\nParece que esa letra ya ha sido ingresada, intentelo nuevamente:\n")
                 i = 0
-                while len(cadena) > 1 or ord(cadena[0]) < 65 or ord(cadena[0]) > 91:
+                while len(cadena) != 1:
                     cadena = input("\nPor favor, ingrese solo una letra...\n")
+                while ord(cadena[0].upper()) < 65 or ord(cadena[0].upper()) > 91:
+                    cadena = input("\nPor favor, ingrese solo una letra...\n")
+                    while len(cadena) != 1:
+                        cadena = input("\nPor favor, ingrese solo una letra...\n")
         return cadena
     def validarEleccionMenu(self, elec):
         while len(elec) != 1:
@@ -200,8 +207,8 @@ class JuegoAhorcado:
         return z;
     def aparicionLetra(self, palabra, letra):
         retorno = False
-        for i in range(len(palabra)):
-            if palabra[i] == letra:
+        for i in range(len(palabra.upper())):
+            if palabra[i].upper() == letra.upper():
                 retorno = True
         return retorno
     def inicioAhorcado(self, palabraSecreta):
@@ -217,7 +224,7 @@ class JuegoAhorcado:
             print(self.obtenerPalabraAdivinada(palabraSecreta, pila))
             print("Letras disponibles: "+self.letrasDisponibles(pila))
             nuevaLetra = input("Ingresa una letra:\n")
-            nuevaLetra = validacion.validarLetras(nuevaLetra)
+            nuevaLetra = validacion.validarLetras(nuevaLetra.upper(), pila)
             pila.agregarLetra(nuevaLetra)
             if self.aparicionLetra(palabraSecreta, nuevaLetra):
                 print("\nMuy bien!")
