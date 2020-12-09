@@ -9,7 +9,22 @@ class Oportunidades:
         self.oportunidades = opors
     def quitarOportunidad(self):
         self.oportunidades = self.oportunidades - 1
-        
+
+class Validacion:
+    def validarLetras(self, cadena):
+        pila = Pila()
+        letrasIngresadas = pila.getLetras()
+        cadena = cadena.upper()
+        while len(cadena) > 1 or ord(cadena[0]) < 65 or ord(cadena[0]) > 91:
+            cadena = input("\nPor favor, ingrese solo una letra...\n")
+        for i in range(len(letrasIngresadas)):
+            if letrasIngresadas[i].upper() == cadena:
+                cadena = input("\nParece que esa letra ya ha sido ingresada, intentelo nuevamente:\n")
+                i = 0
+                while len(cadena) > 1 or ord(cadena[0]) < 65 or ord(cadena[0]) > 91:
+                    cadena = input("\nPor favor, ingrese solo una letra...\n")
+        return cadena
+
 class Ordenamiento:
     def quickSort(self, numeros, izq, der):
         pivote = numeros[0][izq]
@@ -174,10 +189,17 @@ class JuegoAhorcado:
                 z = z + " -"
         return z;
     def inicioAhorcado(self, palabraSecreta):
-        print("\n----- Bienvenido al juego del ahorcado -----")
-        #oportunidades = Oportunidades()
-        #pila = Pila()
-
+        print("\n\n----- Bienvenido al juego del ahorcado -----")
+        oportunidades = Oportunidades()
+        pila = Pila()
+        oportunidades.setOportunidades(10)
+        print("\nEstoy pensando en una palabra... ¿Puedes adivinarla?")
+        while not self.seAdivinoLaPalabra(palabraSecreta, pila):
+            print("\n - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - \n")
+            print("Te quedan "+str(oportunidades.getOportunidades())+" oportunidades...")
+            print(self.obtenerPalabraAdivinada(palabraSecreta, pila))
+            print("Letras disponibles: "+self.letrasDisponibles(pila))
+            nuevaLetra = input("Ingresa una letra:\n")
 class Pila:
     letras = []
     def getLetras(self):
