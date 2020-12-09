@@ -17,12 +17,15 @@ class Archivo:
             with open("palabras.txt", "r+") as archivo:
                 cadena = archivo.read()
                 palabras = cadena.count(",")
-            print("\nArchivo leido exitosamente\nEl archivo contiene "+str(palabras)+" palabras.")
-            
+            if palabras > 0:
+                print("\nArchivo leido exitosamente\nEl archivo contiene "+str(palabras)+" palabras.")
+            else:
+                print("\nArchivo leido exitosamente\nEl archivo no contiene palabras...")
     #def agregarPalbras(self):
         
-    #def eliminarArchivo(self):
-        
-      
-archivo = Archivo()
-archivo.verificarArchivo()
+    def eliminarArchivo(self):
+        if os.path.isfile("palabras.txt"):
+            os.remove("palabras.txt")
+            print("\nEl archivo se elimino con exito")
+        else:
+            print("\nNo se ha encontrado un archivo para eliminar")
