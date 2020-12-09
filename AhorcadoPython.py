@@ -279,5 +279,9 @@ while elec != "5":
     if(elec=="3"):
         archivo.eliminarArchivo()
     if(elec=="4"):
-        juego.inicioAhorcado(juego.elegirPalabra(juego.cargarPalabras()))
+        prueba = 1
+        if archivo.verificarArchivo():
+            juego.inicioAhorcado(juego.elegirPalabra(juego.cargarPalabras()))
+        else:
+            print("\nNo hay palabras en el archivo. Agregue algunas para poder jugar.")
     
