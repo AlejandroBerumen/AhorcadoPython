@@ -1,4 +1,5 @@
 import os.path
+import random
 
 class Oportunidades:
     oportunidades = 10;
@@ -127,4 +128,6 @@ class JuegoAhorcado:
         palabras.pop(len(palabras)-1)
         print("\nSe han cargado "+str(len(palabras))+" palabras con exito")
         return palabras
-    
+    def elegirPalabra(self, palabras):
+        azar = random.randint(0, len(palabras)-1)
+        return palabras[azar]
