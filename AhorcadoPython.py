@@ -5,6 +5,8 @@ class Oportunidades:
     oportunidades = 10;
     def getOportunidades(self):
         return self.oportunidades
+    def setOportunidades(self, opors):
+        self.oportunidades = opors
     def quitarOportunidad(self):
         self.oportunidades = self.oportunidades - 1
         
@@ -173,8 +175,8 @@ class JuegoAhorcado:
         return z;
     def inicioAhorcado(self, palabraSecreta):
         print("\n----- Bienvenido al juego del ahorcado -----")
+        #oportunidades = Oportunidades()
         #pila = Pila()
-        #self.seAdivinoLaPalabra(self.elegirPalabra(self.cargarPalabras()), pila)
 
 class Pila:
     letras = []
