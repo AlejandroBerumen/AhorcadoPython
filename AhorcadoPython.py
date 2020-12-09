@@ -81,8 +81,7 @@ class Archivo:
                     palabra = palabra.upper()
                     i = 0
             bandera = False
-        return palabra
-                 
+        return palabra        
     def crearArchivo(self):
         archivo = open("palabras.txt", "w")
         archivo.close()
@@ -113,7 +112,6 @@ class Archivo:
             orden = Ordenamiento()
             orden.ordenAlfabetico(palabra)
         print("Las palabras se han agregado con exito")
-            
     def eliminarArchivo(self):
         if os.path.isfile("palabras.txt"):
             os.remove("palabras.txt")
@@ -121,5 +119,12 @@ class Archivo:
         else:
             print("\nNo se ha encontrado un archivo para eliminar")
             
-arc = Archivo()
-arc.agregarPalabras()
+class JuegoAhorcado:
+    def cargarPalabras(self):
+        with open("palabras.txt", "r+") as archivo:
+            cadena = archivo.read()
+        palabras = cadena.split(",")
+        palabras.pop(len(palabras)-1)
+        print("\nSe han cargado "+str(len(palabras))+" palabras con exito")
+        return palabras
+    
